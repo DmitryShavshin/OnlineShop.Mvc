@@ -1,0 +1,10 @@
+﻿@model ApplicationUser
+
+<span>
+    <p class="info">Email:</p>
+    <form asp-area="Account" asp-controller="User" asp-action="EditEmailPartial">
+        <input class="input" type="email" asp-for="Email" value="@Model.Email" />
+        <input type="submit" value"Add Email"/>
+        @Html.HiddenFor(u => u.Id)
+    </form>
+</span>  

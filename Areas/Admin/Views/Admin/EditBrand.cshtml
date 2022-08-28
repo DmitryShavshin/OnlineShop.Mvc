@@ -1,0 +1,76 @@
+﻿@model Brand
+
+<form asp-area="Admin" asp-controller="Admin" asp-action="EditBrand" enctype="multipart/form-data" method="post">
+
+ <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Create Brand</h6>
+                            <div class="form-floating mb-3">
+                                <input  asp-for="Name" class="form-control" id="floatingInput"
+                                    placeholder="Brand name">
+                                <label for="floatingInput">Brand name</label>
+                            </div>
+                            <div class="form-floating">
+                                <textarea class="form-control"  asp-for="Description" placeholder="Brand description"
+                                    id="floatingTextarea" style="height: 150px;"></textarea>
+                                <label for="floatingTextarea">Description</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">File Input</h6>
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">Default file input example</label>
+                                <input class="form-control bg-dark" asp-for="TitleImg" type="file" id="formFile">
+                            </div>
+                        </div>
+                    </div>
+                            <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Products</h6>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Product</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Brand</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in @Model.Products)
+                                        {
+                                        <tr>
+                                            <th scope="row"></th>
+                                            <td>@Html.DisplayFor(x => item.Name)</td>
+                                            <td>$@Html.DisplayFor(x => item.Price)</td>
+                                            <td>@Html.DisplayFor(x => item.Brand.Name)</td>
+                                            <td>
+                                            <a class="btn btn-sm btn-sm-square btn-outline-primary m-2" asp-area="Admin"
+                                                    asp-controller="Admin" asp-action="EditProduct" asp-route-id="@item.ProductId"><i class="bi bi-pen"></i></a>
+                                            <a class="btn btn-sm btn-sm-square btn-outline-primary m-2" asp-area="Admin"
+                                                    asp-controller="Admin" asp-action="ProductDetails" asp-route-id="@item.ProductId"><i class="bi bi-info-lg"></i></a>
+                                            <a class="btn btn-sm btn-sm-square btn-outline-primary m-2" asp-area="Admin"
+                                                    asp-controller="Admin" asp-action="RemoveBrandFromProduct" asp-route-productId="@item.ProductId"><i class="bi bi-x-lg"></i></a>
+                                            </td>
+                                        </tr>
+                                        }                                      
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                </div>
+                <div class="col-sm-12 col-xl-12">
+                    <div class="bg-secondary rounded h-100 mt-2 p-4" margin-top="2px" >
+                        <div class="m-n2">
+                            <button class="btn btn-primary w-100 m-2" type="submit">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @Html.HiddenFor(x => x.BrandId)
+</form>

@@ -1,0 +1,43 @@
+﻿@model ProductViewModel 
+<link rel="stylesheet" href="~/css/productCards.css"/>
+<div id="wrapper">
+  
+ <div class="content" id="page-content-wrapper">
+  <div class="slider">
+         @foreach(var item in Model.Products)
+        {
+         <div class="card">
+            <div class="card-content">
+                <img src="~/images/@item.ImgUrl" alt="" class="card-img">
+                <h1 class="card-title">@item.Name</h1>
+                <div class="card-body">
+                    <div class="card-star">
+                        <span class="rating-value">4.5</span>
+                        <span class="star">&#9733;</span>
+                    </div>
+                    <p class="card-price">$@item.Price</p>
+                </div>
+                <div class="card-footer">                   
+                    <a asp-controller="Home" asp-action="Details" asp-route-id="@item.ProductId" class="btn btn-success">Details</a>
+                    <a asp-controller="Cart" asp-action="AddProduct" asp-route-id="@item.ProductId" class="btn btn-border">Add To Cart</a>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+        <div class="shadow one"></div>
+        <div class="shadow two"></div>
+    </div>
+    <!-- /#page-content-wrapper -->
+</div>
+<!-- /#wrapper -->
+
+ <script type="text/javascript">
+       
+        function categoriesList(){
+            document.getElementById("categories-list").classList.toggle("show");
+        }
+         function brandsList(){
+            document.getElementById("brands-list").classList.toggle("show");
+        }
+</script> 

@@ -1,0 +1,62 @@
+﻿@inject SignInManager<ApplicationUser> signInManger
+@inject UserManager<ApplicationUser> userManager
+@model ApplicationUser
+
+<link rel="stylesheet" href="~/css/UserInfo.css" />
+@* <form asp-area="Account" asp-controller="User" asp-action="Edit" method="post" enctype="multipart/form-data" >
+ </form>*@
+    @Html.HiddenFor(u => u.Id);
+    <div class="user-info-wrapper">
+        <div class="user-info-title"><h1>User information:</h1></div>
+        <div class="user-info-container">       
+            <div class="user-info-left">
+                 @await Html.PartialAsync("~/Areas/Account/Views/User/PartialViews/_EditAvatarPartial.cshtml")   
+                <div class="user-work-info">
+                    <p class="work">Work</p>
+                    @await Html.PartialAsync("~/Areas/Account/Views/User/PartialViews/_EditWorkPlacePartial.cshtml")
+                </div>
+            </div>
+            <div class="user-info-right">
+                <div class="user-details">
+                    <div class="user-details-name">
+                        <span>
+                            <p class="user-name">@Model.FirstName @Model.LastName</p>
+                            @if (@Model.HomeAddress != null){
+                                <i class="fas fa-map-marker-alt"><p class="city">@Model.HomeAddress.City</p></i>
+                            }
+                        </span>
+                    </div>
+                    <div class="contacts">
+                        <span>
+                            <i class="fas fa-envelope"></i><a href="#">Send message</a>
+                            <i class="fa-solid fa-address-book"></i><a href="#">Contacts</a>
+                            <a asp-area="Account" asp-controller="User" asp-action="OrderDetails" asp-route-id="@Model.Id">Order Details</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="user-about">
+                    <div class="user-about-nav">
+                        <span ><i></i><p class="timeline">Timeline</p></span>
+                        <span ><i></i><p class="about">About</p></span>
+                    </div>
+                    <div class="user-contact-information">
+                        <h3>Contact information:</h3>
+                        @await Html.PartialAsync("~/Areas/Account/Views/User/PartialViews/_EditPhoneNumberPartial.cshtml")
+                        @await Html.PartialAsync("~/Areas/Account/Views/User/PartialViews/_EditEmailPartial.cshtml")
+                    </div>
+                    <div class="user-basic-information">
+                        <h3>Basic information:</h3>
+                        @await Html.PartialAsync("~/Areas/Account/Views/User/PartialViews/_EditUserInformationPartial.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+
+<script type="text/javascript">
+    $(".user-profile-photo").on("change", function(){
+        let fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".user-profile-photo").addClass("selected").html(fileName);
+    });
+</script>

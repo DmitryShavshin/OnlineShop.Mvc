@@ -1,0 +1,35 @@
+﻿@model ApplicationUser
+
+<form  asp-area="Account"  asp-controller="User" asp-action="EditUserInformationPartial">
+    <span>
+        <p class="info">Name:</p>
+        <input class="input" placeholder="Jeremy" asp-for="FirstName" />
+    </span>
+    <span>
+        <p class="info">Last Name:</p>
+       <input class="input" placeholder="Rose" asp-for="LastName" />
+    </span>
+    <span>
+        <p class="info">Birthday:</p>
+        <input class="input" placeholder="Des 25, 2000" type="date" asp-for="@Model.UserContact.BirthDate" />
+    </span>
+    <span>
+        <p class="info">Country:</p>
+        <input class="input" placeholder="USA"  asp-for="@Model.HomeAddress.Country" />
+    </span>
+    <span>
+        <p class="info">City:</p>
+        <input class="input" placeholder="New York" type="" asp-for="@Model.HomeAddress.City" />
+    </span>
+    <span>
+        <p class="info">Street:</p>
+        <input class="input" placeholder="NY 10654-78156-457-60" type="" asp-for="@Model.HomeAddress.Street" />
+    </span>
+        <span>
+        <p class="info">Postal Code:</p>
+        <input class="input" placeholder="" asp-for="@Model.HomeAddress.PostalCode" />
+    </span>
+ 
+    <input type="submit"  />
+    @Html.HiddenFor(u => u.Id)
+</form>

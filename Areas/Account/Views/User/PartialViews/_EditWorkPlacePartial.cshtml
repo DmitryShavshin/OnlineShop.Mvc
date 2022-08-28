@@ -1,0 +1,28 @@
+﻿@model ApplicationUser
+
+@*@string ReturnUrl = ""
+*@
+<form asp-area="Account"  asp-controller="User" asp-action="EditWorkPlacePartial" method="post"
+    asp-route-returnurl="@ViewData["ReturnUrl"]" }>
+    <div asp-validation-summary="ModelOnly" class="text-danger" ></div>
+    <div class="work-place">
+        <p>
+            <input class="input" placeholder="Spotify New York" asp-for="WorkAddress.CompanyName" />
+            @* @Html.ValidationMessageFor(x => x.WorkAddress.CompanyName)*@
+        </p>
+        <address>
+            <input class="input" placeholder="170 William Street" asp-for="WorkAddress.CompanyAddress" />
+           @*   @Html.ValidationMessageFor(x => x.WorkAddress.CompanyAddress)*@
+        </address>
+        <address>
+             <input class="input" placeholder="New York" asp-for="WorkAddress.City" />
+            @*  @Html.ValidationMessageFor(x => x.WorkAddress.City)*@
+        </address>
+        <address>
+            <input class="input" placeholder="NY 10654-78156-457-60" asp-for="WorkAddress.PostalCode"/>
+          @*    @Html.ValidationMessageFor(x => x.WorkAddress.PostalCode)*@
+        </address>
+    </div> 
+    <input type="submit"  />
+    @Html.HiddenFor(u => u.Id)
+</form>

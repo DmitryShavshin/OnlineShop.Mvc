@@ -1,0 +1,55 @@
+﻿@model CartViewModel
+<link rel="stylesheet" href="~/css/cart.css"/>
+@*<link rel="stylesheet" href="~/css/header.css"/>*@
+
+
+<header id="site-header">
+        <h1>Shopping cart @*<span>[</span><em><a href="https://codepen.io/tag/rodeo-007" target="_blank">CodePen Challange</a></em> <span class="last-span is-open">]</span>*@</h1>
+    </header>  
+    <section class="cart-container">
+            <section id="cart"> 
+                @foreach(var item in @Model.Cart.ListCartItems)
+                {
+                 <article class="product">
+                    <header>
+                        <a class="remove">
+                            <img src="~/images/@item.Product.ImgUrl" alt="">
+                            <a asp-controller="Cart" asp-action="Remove" asp-route-id="@item.Product.ProductId"><h3>Remove Product</h3></a>
+                            
+                        </a>
+                    </header>
+                    <div class="content">
+                        <h1>@item.Product.Name</h1>
+                        <p>@item.Product.Description</p>
+                        <div title="You have selected this product to be shipped in the color yellow." style="top: 0" class="color yellow"></div>
+                        <div style="top: 43px" class="type small"></div>
+                    </div>
+    
+                    <footer class="content">
+                        <span class="qt-minus">-</span>
+                        <span class="qt">2</span>
+                        <span class="qt-plus">+</span>  
+                    @*  <h2 class="full-price">
+                            29.98$
+                        </h2>*@  
+                        <h2 class="price">
+                            $@item.Product.Price
+                        </h2>
+                    </footer>
+                </article>
+                }
+            </section>
+    </section>
+    <section id="cart-footer">
+        <div class="cart-container clearfix">
+            <div class="left">
+                <h2 class="subtotal">Subtotal: <span>@Model.TotalPrice</span>$</h2>
+                <h3 class="tax">Taxes (0%): <span>0</span>$</h3>
+                <h3 class="shipping">Shipping: <span>0</span>$</h3>
+            </div>
+            <div class="right">
+                <h1 class="total">Total: <span>@Model.TotalPrice</span>$</h1>
+                <a asp-controller="Order" asp-action="Checkout" class="btn" >Checkout</a>
+            </div>
+        </div>
+    </section>

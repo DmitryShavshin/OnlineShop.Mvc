@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject RoleManager<ApplicationRole> RoleManager
+
+@if(SignInManager.IsSignedIn(User)){
+    var result = User.Identity.Name;
+    var user = UserManager.Users.FirstOrDefault(u => u.Email == result);   
+
+    <div class="action">
+        <div class="profile" onclick="menuToggle()">
+            @if(user != null){
+                <img src="~/images/@user.ImgUrl">
+            }else{
+                <img src="~/images/7bf6202c-ba2e-4542-bb1b-4090f3010c52_bastei-3014467_1920.jpg">
+            }
+        </div>
+        <div class="menu">
+            <h3>@User.Identity?.Name<br><span>@user.FirstName</span></h3>
+            <ul>
+                <li><img src="~/Icons/user.png"><a asp-area="Account" asp-controller="User" asp-action="Index">Profile</a></li>
+                <li><img src="~/Icons/edit_2.png"><a asp-area="Account" asp-controller="User" asp-action="Edit" asp-route-id="@user.Id">Edit</a></li>
+                <li><img src="~/Icons/envelope.png"><a href="#">Inbox</a></li>
+                @if (User.IsInRole("Admin"))
+                {
+                      <li><img src="~/Icons/settings.png"><a asp-area="Admin" asp-controller="Admin" asp-action="Index">Admin</a></li>
+                }
+                <li><img src="~/Icons/question.png"><a href="#">Help</a></li>                     
+                <li><img src="~/Icons/log-out.png">
+                    <form asp-area="Account" asp-controller="Account" asp-action="Logout">
+                        <button class="logout" type="submit">Logout</button>
+                    </form>
+                </li>                  
+            </ul>
+        </div>
+    </div>
+}else{
+    <li class="nav-item">
+        <a asp-area="Account" asp-controller="Account" asp-action="Index">Login</a>
+    </li> 
+}           

@@ -1,0 +1,83 @@
+﻿@model CreateProductViewModel
+
+<form asp-area="Admin" asp-controller="Admin" asp-action="CreateProduct" enctype="multipart/form-data" method="post">
+     <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Create Product</h6>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput"
+                                   asp-for="Name" placeholder="Product Name">
+                                <label for="floatingInput">Product Name</label>
+                            </div>
+                                <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingPassword"
+                                   asp-for="Price" placeholder="Price">
+                                <label for="floatingPassword">Price</label>
+                            </div> 
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Description"
+                                    asp-for="Description" id="floatingTextarea" style="height: 150px;"></textarea>
+                                <label for="floatingTextarea">Description</label>
+                            </div>                          
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">File Input</h6>
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">Default file input example</label>
+                                <input class="form-control bg-dark" type="file" id="formFile" asp-for="TitleImg">
+                            </div>
+                           <div class="mb-3">
+                                <label for="formFileMultiple" class="form-label">Multiple files input example</label>
+                                <input class="form-control bg-dark" asp-for="Images" type="file" id="formFileMultiple" multiple>
+                            </div>
+                             <div class="form-floating mb-3">
+                                <select class="form-select" id="floatingSelect"
+                                    asp-for="CategoryId"
+                                    asp-items="@(new SelectList(ViewBag.Categories,"Value","Text"))">
+                                    <option selected>Open this select menu</option>
+                                </select>
+                                <label for="floatingSelect">Select Category</label>
+                            </div>
+                             <div class="form-floating mb-3">
+                                <select class="form-select" id="floatingSelect"
+                                    asp-for="BrandId"
+                                    asp-items="@(new SelectList(ViewBag.Brands,"Value","Text"))">
+                                    <option selected>Open this select menu</option>
+                                </select>
+                                <label for="floatingSelect">Select Brand</label>
+                            </div>                       
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xl-12">
+                    <div class="bg-secondary rounded h-100 mt-2 p-4" margin-top="2px" > 
+                        <div class="m-n2">
+                            <button class="btn btn-primary w-100 m-2" type="submit">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</form>
+
+@*<div class="title-image-container">
+                <!-- <span>Title image</span> -->
+                <input class="input" id="FLFrontImage" placeholder="Load Image" asp-for="Product.TitleImg"
+                            onchange="document.getElementById('FrontImgPrv').src=window.URL.createObjectURL(this.files[0])"/>
+                <img id="FrontImgPrv" src="" alt="Logo Image" />
+            </div>
+            <input class="input" id="files" placeholder="Load Images" asp-for="Images" multiple/>
+            <output id="result"></output>*@
+@*            @section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script type="text/javascript" src="~/js/scripts.js"></script>
+<script type="text/javascript">
+    $(".title-image-container").on("change", function(){
+        let fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".title-image-container").addClass("selected").html(fileName);
+    });
+</script>*@

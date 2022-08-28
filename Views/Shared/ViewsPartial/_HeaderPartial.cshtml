@@ -1,0 +1,21 @@
+﻿<header id="header-container">       
+        <div class="container navbar">
+            <nav>
+           @*     <ul>
+                    <li><a asp-area="Admin" asp-controller="Admin" asp-action="Index">Admin</a></li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Home</a></li>
+                </ul>*@
+            </nav>
+            <a asp-area="" asp-controller="Cart" asp-action="Index" class="shopping-cart" ><img class="cart-img" src="~/Icons/shopping-cart.png"></a>
+           @* <a asp-area="" asp-controller="Cart" asp-action="Index" class="shopping-cart" ><i class="fa-light fa-cart-shopping cart-icon"></i></a>*@
+            @await Html.PartialAsync("~/Views/Shared/_LoginPartial.cshtml") 
+        </div>   
+</header>
+<script type="text/javascript">
+    // Add toggle active to dropdown menu
+    function menuToggle() {
+        const toggleMenu = document.querySelector(".menu");
+        toggleMenu.classList.toggle("active");
+    }
+</script>   

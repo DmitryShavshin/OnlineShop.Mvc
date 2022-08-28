@@ -1,0 +1,65 @@
+﻿@model Category
+
+
+<form asp-area="Admin" asp-controller="Admin" asp-action="DeleteCategory" method="post">    
+<div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Category Details</h6>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" asp-for="Name" id="floatingInput"
+                                    placeholder="Name">
+                                <label for="floatingInput">Category name</label>
+                            </div>
+                            <div class="form-floating">
+                                <textarea class="form-control" asp-for="Description" placeholder="Description"
+                                    id="floatingTextarea" style="height: 150px;"></textarea>
+                                <label for="floatingTextarea">Description</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Products</h6>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in @Model.CategoryProducts)
+                                    {
+                                     <tr>
+                                        <th scope="row"></th>
+                                        <td>@Html.DisplayFor(brandName => item.Product.Name)</td>
+                                        <td>@Html.DisplayFor(brandName => item.Product.Price)</td>
+                                         <td>
+                                             <a class="btn btn-sm btn-sm-square btn-outline-primary m-2" asp-area="Admin"
+                                                    asp-controller="Admin" asp-action="EditProduct" asp-route-id="@item.Product.ProductId"><i class="bi bi-pen"></i></a>
+                                             <a class="btn btn-sm btn-sm-square btn-outline-primary m-2" asp-area="Admin"
+                                                    asp-controller="Admin" asp-action="ProductDetails" asp-route-id="@item.Product.ProductId"><i class="bi bi-info-lg"></i></a>
+                                             <a class="btn btn-sm btn-sm-square btn-outline-primary m-2" asp-area="Admin"
+                                                    asp-controller="Admin" asp-action="DeleteBrand" asp-route-id="@item.Product.ProductId"><i class="bi bi-x-lg"></i></a>
+                                         </td>
+                                     </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-12">
+                        <div class="bg-secondary rounded h-100 mt-2 p-4"> 
+                            <div class="m-n2">
+                                <button class="btn btn-primary w-100 m-2" type="submit">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>         
+            </div>
+
+</form>

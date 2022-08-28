@@ -1,0 +1,202 @@
+﻿#site-footer {
+    width: 100%;
+    bottom: 0;
+    background: #111;
+    color: #fff;
+}
+
+    #site-footer > .footer-container > .main-content {
+        display: flex;
+        padding-left: 8%;
+        padding-right: 8%;
+    }
+
+        #site-footer > .footer-container > .main-content > .box {
+            display: flex;
+            flex-direction: column;
+            flex-basis: 50%;
+            padding: 10px 20px;
+        }
+
+            #site-footer > .footer-container > .main-content > .box > h2 {
+                text-transform: uppercase;
+                font-weight: 600;
+                font-size: 1.2rem;
+            }
+
+            #site-footer > .footer-container > .main-content > .box > .footer-content {
+                margin: 10px 0 0 0;
+                position: relative;
+            }
+
+.box > .footer-content::before {
+    position: absolute;
+    content: "";
+    top: -10px;
+    height: 2px;
+    width: 100%;
+    background: #1a1a1a;
+}
+
+.box > .footer-content::before {
+    position: absolute;
+    content: "";
+    top: -10px;
+    height: 2px;
+    width: 20%;
+    background: #f12020;
+    top: -10px;
+}
+
+.footer-left > .footer-content {
+    margin: 20px 0 0 0;
+}
+
+    .footer-left > .footer-content > p {
+        margin-bottom: 10px;
+        font-weight: 500;
+        text-align: justify;
+    }
+
+    .footer-left > .footer-content > .footer-social {
+        display: flex;
+        width: 45px;
+        height: 45px;
+    }
+
+        .footer-left > .footer-content > .footer-social > a {
+            padding: 0 2px;
+        }
+
+            .footer-left > .footer-content > .footer-social > a > span {
+                width: 40px;
+                height: 40px;
+                background: #1a1a1a;
+                line-height: 40px;
+                text-align: center;
+                border-radius: 3px;
+                font-size: 18px;
+                border-radius: 5px;
+                transition: .5 ease;
+                color: #fff;
+            }
+
+                .footer-left > .footer-content > .footer-social > a > span:hover {
+                    background: #f12020;
+                }
+
+.footer-center > .footer-content > .place {
+    margin-bottom: 10px;
+}
+
+    .footer-center > .footer-content > .place > .fas {
+        font-size: 1.45rem;
+        background: #1a1a1a;
+        height: 45px;
+        width: 45px;
+        line-height: 45px;
+        text-align: center;
+        border-radius: 50%;
+    }
+
+        .footer-center > .footer-content > .place > .fas:hover {
+            background: #f12020;
+        }
+
+    .footer-center > .footer-content > .place > .text {
+        margin-left: 10px;
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+
+.footer-right > .footer-content > .text {
+    font-size: 1.1rem;
+    margin-bottom: 2px;
+    color: #656565;
+}
+
+.footer-right > .footer-content > .footer-message {
+    margin-top: 10px;
+}
+
+.footer-email > input,
+.footer-message > textarea {
+    width: 100%;
+    font-size: 1.1rem;
+    background: #151515;
+    padding-left: 10px;
+    outline: none;
+    border: none;
+    border: 1px solid #222222;
+    color: #fff;
+}
+
+    .footer-email > input:focus,
+    .footer-message > textarea:focus {
+        outline-color: #656565;
+        border: 1px solid #656565;
+    }
+
+.footer-right > form > input {
+    height: 35px;
+}
+
+.footer-btn > button {
+    height: 40px;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: #f12020;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: .5s;
+}
+
+    .footer-btn > button:hover {
+        background: #000;
+        color: #fff;
+    }
+
+.footer-bottom {
+    display: flex;
+    justify-content: center;
+}
+
+    .footer-bottom > div {
+        font-size: .95rem;
+        background: #151515;
+        padding: 5px;
+    }
+
+        .footer-bottom > div > span {
+            color: #656565;
+        }
+
+            .footer-bottom > div > span > a {
+                color: #f12020;
+                text-decoration: none;
+                transition: .5s ease;
+            }
+
+                .footer-bottom > div > span > a:hover {
+                    color: rgb(0, 95, 107);
+                    border-bottom: 2px solid rgb(0, 95, 107);
+                }
+
+@media screen and (max-width: 900px) {
+    #site-footer {
+        position: relative;
+        bottom: 0px;
+    }
+
+    .main-content {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+        .main-content > .box {
+            margin: 5px 0;
+        }
+}

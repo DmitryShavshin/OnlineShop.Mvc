@@ -1,0 +1,153 @@
+﻿@model EditProductViewModel
+
+<form asp-area="Admin" asp-controller="Admin" asp-action="EditProduct" enctype="multipart/form-data" method="post">
+     <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Create Product</h6>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput"
+                                   asp-for="Product.Name" placeholder="Product Name">
+                                <label for="floatingInput">Product Name</label>
+                            </div>
+                                <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingPassword"
+                                   asp-for="Product.Price" placeholder="Price">
+                                <label for="floatingPassword">Price</label>
+                            </div> 
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Description"
+                                    asp-for="Product.Description" id="floatingTextarea" style="height: 150px;"></textarea>
+                                <label for="floatingTextarea">Description</label>
+                            </div>                          
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">File Input</h6>
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">Default file input example</label>
+                                <input class="form-control bg-dark" type="file" id="formFile" asp-for="TitleImg">
+                            </div>
+                           <div class="mb-3">
+                                <label for="formFileMultiple" class="form-label">Multiple files input example</label>
+                                <input class="form-control bg-dark" asp-for="Images" type="file" id="formFileMultiple" multiple>
+                            </div>
+                             <div class="form-floating mb-3">
+                                <select class="form-select" id="floatingSelect"
+                                    asp-for="CategoryId"
+                                    asp-items="@(new SelectList(ViewBag.Categories,"Value","Text"))">
+                                    <option selected>Open this select menu</option>
+                                </select>
+                                <label for="floatingSelect">Select Category</label>
+                            </div>
+                             <div class="form-floating mb-3">
+                                <select class="form-select" id="floatingSelect"
+                                    asp-for="BrandId"
+                                    asp-items="@(new SelectList(ViewBag.Brands,"Value","Text"))">
+                                    <option selected>Open this select menu</option>
+                                </select>
+                                <label for="floatingSelect">Select Brand</label>
+                            </div>                       
+                        </div>
+                    </div>   
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Categories</h6>
+                    @if (@Model.Product.CategoryProducts != null)
+                    {    
+                        <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Category Name</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in @Model.Product.CategoryProducts)
+                                    {
+                                     <tr>
+                                        <th scope="row"></th>
+                                        <td>@Html.DisplayFor(x => item.Category.Name)</td>
+                                        <td>@Html.DisplayFor(x => item.Category.Description)</td>
+                                         <td>
+                                              <a class="btn btn-sm btn-sm-square btn-outline-primary m-2" asp-area="Admin"
+                                                    asp-controller="Admin" asp-action="EditCategory" asp-route-id="@item.CategoryId"><i class="bi bi-pen"></i></a>
+                                              <a class="btn btn-sm btn-sm-square btn-outline-primary m-2" asp-area="Admin"
+                                                    asp-controller="Admin" asp-action="CategoryDetails" asp-route-id="@item.CategoryId"><i class="bi bi-info-lg"></i></a>
+                                              <a class="btn btn-sm btn-sm-square btn-outline-primary m-2" asp-area="Admin"
+                                                    asp-controller="Admin" asp-action="RemoveProductFromCategory" asp-route-productId="@Model.Product.ProductId" asp-route-categoryId="@item.CategoryId"><i class="bi bi-x-lg"></i></a>
+                                         </td>
+                                     </tr>
+                                    }
+                                </tbody>
+                            </table> 
+                           }
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Brand</h6>
+                            @if (@Model.Product.Brand != null)
+                            {
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Brand Name</th>
+                                        <th scope="col">Brand Description</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   
+                                     <tr>
+                                        <th scope="row"></th>
+                                        <td>@Html.DisplayFor(x => @Model.Product.Brand.Name)</td>
+                                        <td>@Html.DisplayFor(x => @Model.Product.Brand.Description)</td>
+                                         <td>
+                                              <a class="btn btn-sm btn-sm-square btn-outline-primary m-2" asp-area="Admin"
+                                                    asp-controller="Admin" asp-action="EditBrand" asp-route-id="@Model.Product.Brand.BrandId"><i class="bi bi-pen"></i></a>
+                                              <a class="btn btn-sm btn-sm-square btn-outline-primary m-2" asp-area="Admin"
+                                                    asp-controller="Admin" asp-action="BrandDetails" asp-route-id="@Model.Product.Brand.BrandId"><i class="bi bi-info-lg"></i></a>
+                                              <a class="btn btn-sm btn-sm-square btn-outline-primary m-2" asp-area="Admin"
+                                                    asp-controller="Admin" asp-action="RemoveBrandFromProduct" asp-route-productId="@Model.Product.ProductId"><i class="bi bi-x-lg"></i></a>
+                                         </td>
+                                     </tr>
+                                   
+                                </tbody>
+                            </table>                              
+                            }
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-3" mt-2>
+                            <div class="bg-secondary rounded h-100 mt-2 p-4">
+                                 <h6 class="mb-4">Title Image</h6>
+                                <img src="~/images/@Model.Product.ImgUrl" alt="" class="img-thumbnail">
+                            </div>
+                        </div>
+                        <div class="d-inline col-sm-12 col-xl-3" mt-2>
+                            <div class="bg-secondary rounded h-100 p-4">
+                                 <h6 class="mb-4">Images</h6>
+                                 @foreach (var item in @Model.Product.ProductImages)
+                                 {                       
+                                     <img src="~/images/@item.ImageUrl" alt="" class=" mt-2 img-thumbnail ">
+                                 }
+                            </div>
+                        </div>
+                    <div class="col-sm-12 col-xl-12">
+                        <div class="bg-secondary rounded h-100 mt-2 p-4"> 
+                            <div class="m-n2">
+                                <button class="btn btn-primary w-100 m-2" type="submit">Edit</button>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <input type="hidden" asp-for="Product.ProductId" />  
+        <input type="hidden" asp-for="Product.ProductImages" />   
+        <input type="hidden" asp-for="Product.CategoryProducts" />  
+</form>

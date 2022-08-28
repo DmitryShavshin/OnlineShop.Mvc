@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css"/>
+    <link rel="stylesheet" href="~/css/style.css"/>
+    <link rel="stylesheet" href="~/css/header.css"/>
+    <link rel="stylesheet" href="~/css/footer.css"/>
+    <link rel="stylesheet" href="~/css/admin.css/>
+    <link rel="stylesheet" href="~/css/UserInfo.css"/>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div>
+        @*@await Html.PartialAsync("~/Views/Shared/ViewsPartial/_SideBarPartial.cshtml")*@
+        @await Html.PartialAsync("~/Views/Shared/ViewsPartial/_HeaderPartial.cshtml")
+        @RenderBody()
+        @await Html.PartialAsync("~/Views/Shared/ViewsPartial/_FooterPartial.cshtml")
+    </div>
+</body>
+</html>

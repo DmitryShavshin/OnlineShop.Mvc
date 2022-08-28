@@ -1,0 +1,70 @@
+﻿@model ApplicationUser
+
+@{
+    Layout = "";
+}
+<link rel="stylesheet" href="~/css/AuthorizationForm.css" asp-append-version="true" />
+<section class="main">
+    <div class="container a__container" id="a_container">
+        <section class="form" id="a_form">
+            <h2 class="form__title title">Create Account</h2>
+            <div class="form__icons">
+            <form asp-controller="Account" asp-action="ExternalLogin" method="post">
+                 <button class="social-btn" type="submit" name="provider" value="Google" >
+                     <img class="form__icon__social" src="~/Soccial/icons8-google-48.png" 
+                        title="Log in using your Google account" alt="Instagram" />
+                 </button>
+                  <button class="social-btn" type="submit" name="provider"><img class="form__icon__social" src="~/Soccial/icons8-facebook-48.png"  alt="Instagram" /></button>
+                   <button class="social-btn" type="submit" name="provider"><img class="form__icon__social" src="~/Soccial/icons8-instagram-48.png"  alt="Instagram" /></button>
+            </form>
+            </div>
+       <form  method="post" asp-area="Account" asp-controller="Account" asp-action="Registration">
+                <span class="form__span">Or use email for registration</span>
+                <input class="form__input" asp-for="@Model.Email" autocomplete="Email" aria-required="true" />
+                <input class="form__input" asp-for="@Model.Password" autocomplete="Password" aria-required="true" />
+                <input class="form__input" asp-for="@Model.PasswordConfirm" autocomplete="PasswordConfirm" aria-required="true" />
+                <button class="form__button button submit" type="submit">Sign Up</button>
+        </form>
+      </section>
+    </div>
+      <div class="container b__container" id="b_container">
+      <section class="form" id="b_form">
+            <h2 class="form__title title">Sign in to website</h2>
+            <form asp-controller="Account" asp-action="ExternalLogin" method="post">
+                 <button class="social-btn" type="submit" name="provider" value="Google" >
+                     <img class="form__icon__social" src="~/Soccial/icons8-google-48.png" 
+                        title="Log in using your Google account" alt="Instagram" />
+                 </button>
+                  <button class="social-btn" type="submit" name="provider"><img class="form__icon__social" src="~/Soccial/icons8-facebook-48.png"  alt="Instagram" /></button>
+                   <button class="social-btn" type="submit" name="provider"><img class="form__icon__social" src="~/Soccial/icons8-instagram-48.png"  alt="Instagram" /></button>
+            </form>
+            <div class="form__icons"> 
+            </div>
+        <form  method="post" asp-area="Account" asp-controller="Account" asp-action="Login"> 
+            <span class="form__span">Or use email for login your account</span>
+            <input class="form__input" asp-for="@Model.Email" autocomplete="username" aria-required="true" />
+            <input class="form__input" asp-for="@Model.Password" autocomplete="password" aria-required="true" />
+            <button class="form__button button submit" type="submit">Sign In</button>
+        </form>
+    </section>
+    </div>  
+    <div class="switch" id="switch_cnt">
+        <div class="switch__circle"></div>
+        <div class="switch__circle switch__circe--t"></div>
+        <div class="switch__container" id="switch_c1">
+            <h2 class="switch__title title">Welcome back</h2>
+            <p class="switch__description description">
+                to keep connected wit us please login with personal info
+            </p>
+            <button class="switch__button button switch__btn__signin">Sign in</button>
+        </div>
+        <div class="switch__container is-hidden" id="switch_c2">
+            <h2 class="switch__title title">Hello friend</h2>
+            <p class="switch__description description">
+               Enter you personal details and start journey with us
+            </p>
+            <button class="switch__button button switch__btn__signup">Sign up</button>
+        </div>
+    </div>
+</section>
+<script src="~/js/auth.js" asp-append-version="true"></script>

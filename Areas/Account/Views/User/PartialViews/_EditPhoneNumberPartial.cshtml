@@ -1,0 +1,10 @@
+﻿@model ApplicationUser
+
+<span>
+    <p class="info">Phone:</p>
+    <form asp-area="Account"  asp-controller="User" asp-action="EditPhoneNumberPartial" >
+        <input class="input" placeholder="012 34 56 789" type="tel" asp-for="PhoneNumber" />
+        <input type="submit" value"Add Number"/>
+        @Html.HiddenFor(u => u.Id)
+    </form>
+</span>

@@ -1,0 +1,41 @@
+﻿@model CreateViewModel
+
+
+<form asp-area="Admin" asp-controller="Admin" asp-action="CreateCategory" enctype="multipart/form-data" method="post">
+<div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Create Category</h6>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" asp-for="Name" id="floatingInput"
+                                    placeholder="Name">
+                                <label for="floatingInput">Category name</label>
+                            </div>
+                            <div class="form-floating">
+                                <textarea class="form-control" asp-for="Description" placeholder="Description"
+                                    id="floatingTextarea" style="height: 150px;"></textarea>
+                                <label for="floatingTextarea">Description</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">File Input</h6>
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">Default file input example</label>
+                                <input class="form-control bg-dark" asp-for="TitleImg" type="file" id="formFile">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xl-12">
+                    <div class="bg-secondary rounded h-100 mt-2 p-4" margin-top="2px" >
+                        <div class="m-n2">
+                            <button class="btn btn-primary w-100 m-2" type="submit">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</form>
+ 

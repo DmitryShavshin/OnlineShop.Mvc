@@ -1,0 +1,241 @@
+﻿@inject SignInManager<ApplicationUser> signInManger
+@inject UserManager<ApplicationUser> userManager
+@model ApplicationUser
+
+<link rel="stylesheet" href="~/css/UserInfo.css" />
+ <form asp-area="Account" asp-controller="User" asp-action="Index" method="post" enctype="multipart/form-data" >
+    @Html.HiddenFor(u => u.Id);
+    <div class="user-info-wrapper">
+        <div class="user-info-title"><h1>User information:</h1></div>
+        <div class="user-info-container">       
+            <div class="user-info-left">
+                @if(Model.ImgUrl == null)
+                {
+                    <div class="user-profile-photo">
+                        <img id="userAvatar" src="~/images/image-not-found.jpg" />
+                    </div>  
+                }
+                else
+                {
+                    <div class="user-profile-photo">
+                        <img id="userAvatar" src="~/images/@Model.ImgUrl" />
+                    </div>         
+                }
+                <div class="user-work-info">
+                    <p class="work">Work</p>
+                    @if (@Model.WorkAddress != null){
+                        <div class="work-place">
+                            <p>@Model.WorkAddress.City</p>
+                            <p>@Model.WorkAddress.CompanyName</p>
+                            <address>@Model.WorkAddress.CompanyAddress</address>
+                            <address>@Model.WorkAddress.PostalCode</address>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="user-info-right">
+                <div class="user-details">
+                    <div class="user-details-name">
+                        <span>
+                            @if (@Model != null){
+                                <p class="user-name">@Model.FirstName @Model.LastName</p>
+                            }
+                            @if (@Model.HomeAddress != null){
+                                <i class="fas fa-map-marker-alt"><p class="city">@Model.HomeAddress.City</p></i>
+                            }
+                        </span>
+                        <h3 class="profession">@Model.Email</h3>
+                    </div>
+                    <div class="contacts">
+                        <span>
+                            <i class="fas fa-envelope"></i><a href="#">Send message</a>
+                            <i class="fa-solid fa-address-book"></i><a href="#">Contacts</a>
+                            <a asp-area="Account" asp-controller="User" asp-action="Edit" asp-route-id="@Model.Id">Edit Profile</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="user-about">
+                    <div class="user-about-nav">
+                        <span ><i></i><p class="timeline">Timeline</p></span>
+                        <span ><i></i><p class="about">About</p></span>
+                    </div>
+                    <div class="user-contact-information">
+                        <h3>Contact information:</h3>
+                        <span><p class="info">Phone:</p><p class="desc">@Model.PhoneNumber</p></span>
+                        <span><p class="info">Address:</p>
+                            @if (@Model.HomeAddress != null){
+                                <address class="desc">@Model.HomeAddress.City 
+                                     @if(@Model.HomeAddress != null){
+                                        @Model.HomeAddress.PostalCode
+                                    }
+                                </address> 
+                            } 
+                        </span>
+                        <span><p class="info">Email:</p><p class="desc">@Model.Email</p></span>
+                    </div>
+                    <div class="user-basic-information">
+                        <h3>Basic information:</h3>
+                        @if(@Model.UserContact != null){
+                            <span><p class="info">Birthday:</p><p class="desc">Des 25, 2000</p></span>
+                        }@if(@Model.HomeAddress != null){
+                            <span><p class="info">Country:</p><p class="desc">@Model.HomeAddress.Country</p></span>
+                            <span><p class="info">City:</p><p class="desc">@Model.HomeAddress.City</p></span>
+                            <span><p class="info">Street:</p><p class="desc">@Model.HomeAddress.Street</p></span>
+                            <span><p class="info">Postal code:</p><p class="desc">@Model.HomeAddress.PostalCode</p></span>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</form>
+
+<script type="text/javascript">
+    $(".user-profile-photo").on("change", function(){
+        let fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".user-profile-photo").addClass("selected").html(fileName);
+    });
+</script>
+
+@*<span class="main_bg"></span>
+<div class="user-info-container">
+        <!-- ===== ===== User Main-Profile ===== ===== -->
+        <section class="userProfile card">
+            <div class="profile">
+                <figure><img src="profile.png" alt="profile" width="250px" height="250px"></figure>
+            </div>
+        </section>
+
+
+        <!-- ===== ===== Work & Skills Section ===== ===== -->
+        <section class="work_skills card">
+
+            <!-- ===== ===== Work Contaienr ===== ===== -->
+            <div class="work">
+                <h1 class="heading">work</h1>
+                <div class="primary">
+                    <h1>Spotify New York</h1>
+                    <span>Primary</span>
+                    <p>170 William Street <br> New York, NY 10038-212-315-51</p>
+                </div>
+
+                <div class="secondary">
+                    <h1>Metropolitan <br> Museum</h1>
+                    <span>Secondary</span>
+                    <p>S34 E 65th Street <br> New York, NY 10651-78 156-187-60</p>
+                </div>
+            </div>
+
+            <!-- ===== ===== Skills Contaienr ===== ===== -->
+            <div class="skills">
+                <h1 class="heading">Skills</h1>
+                <ul>
+                    <li style="--i:0">Android</li>
+                    <li style="--i:1">Web-Design</li>
+                    <li style="--i:2">UI/UX</li>
+                    <li style="--i:3">Video Editing</li>
+                </ul>
+            </div>
+        </section>
+
+
+        <!-- ===== ===== User Details Sections ===== ===== -->
+        <section class="userDetails card">
+            <div class="userName">
+                <h1 class="name">Jeremy Rose</h1>
+                <div class="map">
+                    <i class="ri-map-pin-fill ri"></i>
+                    <span>New York, NY</span>
+                </div>
+                <p>Product Designer</p>
+            </div>
+
+            <div class="rank">
+                <h1 class="heading">Rankings</h1>
+                <span>8,6</span>
+                <div class="rating">
+                    <i class="ri-star-fill rate"></i>
+                    <i class="ri-star-fill rate"></i>
+                    <i class="ri-star-fill rate"></i>
+                    <i class="ri-star-fill rate"></i>
+                    <i class="ri-star-fill rate underrate"></i>
+                </div>
+            </div>
+
+            <div class="btns">
+                <ul>
+                    <li class="sendMsg">
+                        <i class="ri-chat-4-fill ri"></i>
+                        <a href="#">Send Message</a>
+                    </li>
+
+                    <li class="sendMsg active">
+                        <i class="ri-check-fill ri"></i>
+                        <a href="#">Contacts</a>
+                    </li>
+
+                    <li class="sendMsg">
+                        <a href="#">Report User</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+
+        <!-- ===== ===== Timeline & About Sections ===== ===== -->
+        <section class="timeline_about card">
+            <div class="tabs">
+                <ul>
+                    <li class="timeline">
+                        <i class="ri-eye-fill ri"></i>
+                        <span>Timeline</span>
+                    </li>
+
+                    <li class="about active">
+                        <i class="ri-user-3-fill ri"></i>
+                        <span>About</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="contact_Info">
+                <h1 class="heading">Contact Information</h1>
+                <ul>
+                    <li class="phone">
+                        <h1 class="label">Phone:</h1>
+                        <span class="info">+11 234 567 890</span>
+                    </li>
+
+                    <li class="address">
+                        <h1 class="label">Address:</h1>
+                        <span class="info">S34 E 65th Street <br> New York, NY 10651-78 156-187-60</span>
+                    </li>
+
+                    <li class="email">
+                        <h1 class="label">E-mail:</h1>
+                        <span class="info">@Model.Email</span>
+                    </li>
+
+                    <li class="site">
+                        <h1 class="label">Site:</h1>
+                        <span class="info">www.rsmarquetech.com</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="basic_info">
+                <h1 class="heading">Basic Information</h1>
+                <ul>
+                    <li class="birthday">
+                        <h1 class="label">Birthday:</h1>
+                        <span class="info">Dec 25, 2000</span>
+                    </li>
+
+                    <li class="sex">
+                        <h1 class="label">Gender:</h1>
+                        <span class="info">Male</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+</div>*@

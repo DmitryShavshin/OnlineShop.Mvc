@@ -1,0 +1,23 @@
+﻿@model ApplicationUser
+
+<form asp-area="Account" asp-controller="User" asp-action="EditAvatarPartial" enctype="multipart/form-data">
+    @if(Model.ImgUrl == null)
+    {
+        <div class="user-profile-photo">
+            <img id="userAvatar" src="~/images/image-not-found.jpg" />
+        </div>  
+        <input class="input" id="FLFrontImage" placeholder="Load Image" asp-for="UserAvatar"
+            onchange="document.getElementById('userAvatar').src=window.URL.createObjectURL(this.files[0])"/>
+        <input type="submit" value="Add image" class=""/>    
+    }
+    else
+    {
+        <div class="user-profile-photo">
+            <img id="userAvatar" src="~/images/@Model.ImgUrl" />
+        </div>  
+        <input class="input" id="FLFrontImage" placeholder="Load Image" asp-for="UserAvatar"
+            onchange="document.getElementById('userAvatar').src=window.URL.createObjectURL(this.files[0])"/>
+        <input type="submit" value="Add image" class=""/>
+    }
+    @Html.HiddenFor(u => u.Id)
+</form>

@@ -1,0 +1,132 @@
+﻿@*@model ProductViewModel*@
+
+ <div id="navbar">
+       <a href="#" class="menu-bars header-label" ><i class="fas fa-bars" id="show-menu"></i>Online Shop</a>   
+       @await Html.PartialAsync("~/Views/Shared/ViewsPartial/_HeaderPartial.cshtml")
+    </div>
+    <nav id="nav-menu">
+        <ul class="nav-menu-items">
+            <div id="navbar-toggle">
+                <a href="#" class="menu-bars"><i class="fas fa-bars nav-icon" id="hide-menu"></i></a>
+                <a href="#" id="shop-logo"><h1><i></i>Online Shop</h1></a>
+            </div>
+            <hr>
+            <div class="nav-section">
+                <li class="sidebar-nav-text"><a href="#"><i class="fas fa-bars nav-icon"></i>Home</a></li>
+                <li class="sidebar-nav-text"><a href="#"><i class="fas fa-bars nav-icon"></i>Home</a></li>
+                <li class="sidebar-nav-text"><a href="#"><i class="fas fa-bars nav-icon"></i>Home</a></li>
+            </div>
+            <hr>
+            <div class="nav-section">
+                <li class="sidebar-nav-text"><a href="#"><i class="fas fa-bars nav-icon"></i>Home</a></li>
+                <li class="sidebar-nav-text"><a href="#"><i class="fas fa-bars nav-icon"></i>Home</a></li>
+                <li class="sidebar-nav-text"><a href="#"><i class="fas fa-bars nav-icon"></i>Home</a></li>
+            </div>
+        </ul>
+        <div class="nav-menu-items-right">
+
+        </div>
+    </nav>
+        <script type="text/javascript"> 
+        // Sydebar
+        const openMenu = document.querySelector("#show-menu");
+        const hideMenu = document.querySelector("#hide-menu");
+        const sideMenu = document.querySelector("#nav-menu");
+
+        openMenu.addEventListener('click', function () {
+            sideMenu.classList.add('active')
+        });
+
+        hideMenu.addEventListener('click', function () {
+            sideMenu.classList.remove('active')
+        });
+    </script>
+@*    <script type="text/javascript">  
+        // Sydebar
+        const openMenu = document.querySelector('#show-menu');
+        const hideMenu = document.querySelector('#hide-menu');
+        const sideMenu = document.querySelector('#nav-menu');
+
+        openMenu.addEventListener('click', function () {
+            sideMenu.classList.add('active')
+        });
+
+        hideMenu.addEventListener('click', function () {
+            sideMenu.classList.remove('active')
+        });
+    </script>*@
+
+
+
+
+
+    @*<button type="button" class="hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+    			<span class="hamb-middle"></span>
+				<span class="hamb-bottom"></span>
+     </button>  
+<!-- Sidebar -->
+    <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">        
+     <ul class="nav sidebar-nav">
+       <div class="sidebar-header">
+           <div class="sidebar-brand">
+                <a asp-area="" asp-controller="Home" asp-action="Index" >Online Shop</a>
+           </div>
+       </div>
+       <form asp-area="" asp-controller="Home" asp-action="Index" method="post">
+       <li><a href="#home">Home</a></li>
+       <li><a href="#about">About</a></li>
+       <li class="dropdown">
+           <a href="#works" onclick="categoriesList()" class="dropdown-toggle"  data-toggle="dropdown">Categories <span class="caret"></span></a>
+           <ul id="categories-list" class="dropdown-menu animated fadeInLeft" role="menu">
+              <div class="dropdown-header">Select Category</div>
+              @foreach(var cat in Model.Categories)
+              {
+                <li>
+                    <a href="#awards"> 
+                        <input type="checkbox" name="searchParam" value="@cat.Name" id="@cat.CategoryId">      
+                        <label for="@cat.CategoryId">@cat.Name</label>
+                        <input type="hidden" asp-for="@cat.CategoryId">
+                        <input type="hidden" asp-for="@cat.Name">
+                    </a>
+                </li>
+              }
+          </ul>
+      </li>
+       <li><a href="#events">Events</a></li>
+       <li><a href="#team">Team</a></li>
+       <li class="dropdown">
+           <a href="#works" onclick="brandsList()" class="dropdown-toggle"  data-toggle="dropdown">Brands <span class="caret"></span></a>
+           <ul id="brands-list" class="dropdown-menu animated fadeInLeft" role="menu">
+              <div class="dropdown-header">Select Brand</div>
+             @foreach (var brands in Model.Brands )
+             {
+                 <li>
+                    <a href="#awards">   
+                        <input type="checkbox" name="searchParam" value="@brands.Name" id="@brands.BrandId">
+                        <label for="@brands.BrandId">@brands.Name</label>
+                        <input type="hidden" asp-for="@brands.BrandId">
+                        <input type="hidden" asp-for="@brands.Name">
+                    </a>
+                </li>
+             }
+                </ul>
+            </li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#followme">Follow me</a></li>
+            <input type="submit" value="Select" class="btn btn-primary" />
+        </form>   
+    </ul>
+</nav>
+        <!-- /#sidebar-wrapper -->
+
+    <script type="text/javascript">
+       
+        function categoriesList(){
+            document.getElementById("categories-list").classList.toggle("show");
+        }
+         function brandsList(){
+            document.getElementById("brands-list").classList.toggle("show");
+        }
+    </script>*@
